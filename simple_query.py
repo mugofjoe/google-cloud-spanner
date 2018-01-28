@@ -29,7 +29,8 @@ def run_quickstart():
 
     # Execute a simple SQL statement.
     with database.snapshot() as snapshot:
-        results = snapshot.execute_sql('SELECT 1')
+        # results = snapshot.execute_sql('SELECT * FROM Singers')
+        results = snapshot.execute_sql('SELECT * FROM Albums')
 
         for row in results:
             print(row)
