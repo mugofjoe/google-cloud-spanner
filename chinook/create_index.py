@@ -1,19 +1,16 @@
 SPANNER_CREDENTIALS = 'credentials.json'
 SPANNER_INSTANCE = 'darwins-bark-001'
-DATABASE_NAME = 'example-db'
+DATABASE_NAME = 'fohn'
 
-def create_table(instance_id, database_id):
-    """Creates tables."""
+def create_index(instance_id, database_id):
+    """Creates index."""
     from google.cloud import spanner
     spanner_client = spanner.Client.from_service_account_json(SPANNER_CREDENTIALS)
     instance = spanner_client.instance(instance_id)
     database = instance.database(database_id)
     ddl_statements=[
         """
-        CREATE TABLE Artist (
-            ArtistId INT64 NOT NULL,
-            Name     STRING(120),
-        ) PRIMARY KEY (ArtistId)
+        CREATE INDEX IFK_AlbumArtistId ON Album(ArtistId)
         """
     ]
     operation_id = ""
@@ -23,4 +20,4 @@ def create_table(instance_id, database_id):
     operation.result()
 
 if __name__ == '__main__':
-    create_table(SPANNER_INSTANCE, DATABASE_NAME)
+    create_index(SPANNER_INSTANCE, DATABASE_NAME)
