@@ -2,7 +2,8 @@
 
 SPANNER_CREDENTIALS = 'credentials.json'
 SPANNER_INSTANCE = 'darwins-bark-001'
-DATABASE_NAME = 'example-db'
+DATABASE_NAME = 'fohn'
+#DATABASE_NAME = 'example-db'
 
 def run_quickstart():
     # [START spanner_quickstart]
